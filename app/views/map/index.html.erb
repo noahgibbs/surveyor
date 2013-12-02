@@ -1,9 +1,17 @@
 <%= javascript_tag do %>
-  $(window.initMap)
+  $(window.initMap);
+
+  window.on_tick = function() {
+    if(window.already_ticked != "true") {
+      window.setSprites( <%= @tile_data.inspect %> );
+      window.already_ticked = "true";
+    }
+  };
 <% end %>
 
 <div id="loader" class="loader"></div>
 
 <h1>Map View</h1>
 
-<canvas id="displayCanvas" width="640" height="640"></canvas>
+<canvas id="displayCanvas" width="<%= @width_in_tiles * @tile_width_in_pixels %>"
+        height="<%= @height_in_tiles * @tile_height_in_pixels %>"></canvas>
