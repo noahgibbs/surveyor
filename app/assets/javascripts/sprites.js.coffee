@@ -38,21 +38,16 @@ class Tilesheet
         @container.addChild @sprites[h][w]
 
   set_sprites: (data) ->
-    i = 0
-    while i < data.length
-      j = 0
-      while j < data[i].length
-        @sprites[i][j].gotoAndStop(data[i][j])
-        j++
-      i++
+    for row, i in data
+      for terrain_val, j in row
+        @sprites[i][j].gotoAndStop terrain_val
 
 handleSpritesLoaded = () ->
   # Is this needed?
   $("#loader")[0].className = ""
 
   for sheet in window.sprite_sheets
-    preloaded_imgs = []
-    preloaded_imgs.push(window.loader.getResult image) for image in sheet.images
+    preloaded_imgs = (window.loader.getResult(image) for image in sheet.images)
     sheet.object = new createjs.SpriteSheet
       frames: sheet.frames, images: preloaded_imgs, animations: sheet.animations
 
