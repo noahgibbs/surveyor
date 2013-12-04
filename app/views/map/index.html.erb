@@ -5,14 +5,38 @@
       images: [ "./terrain.png" ],
       frames: { width:32, height: 32 },
       animations: {}
+    },
+    {
+      name: "skeleton",
+      images: [
+        "/sprites/skeleton_walkcycle.png",  # 0-36
+        "/sprites/skeleton_hurt.png",
+        "/sprites/skeleton_slash.png",
+        "/sprites/skeleton_spellcast.png"
+      ],
+      frames: { width:64, height: 64 },
+      animations: {
+        stand_up: 0,
+        walk_up: [1, 8],
+        stand_left: 9,
+        walk_left: [10, 17],
+        fake: 0
+      }
     }
+
   ];
 
   $(window.init_graphics);
 
   window.on_tick = function() {
     if(window.already_ticked != "true") {
+
       window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
+
+      var sprite = new createjs.Sprite(window.sprite_sheets[1].object);
+      sprite.gotoAndPlay("walk_left");
+      window.stage.addChild(sprite);
+
       window.already_ticked = "true";
     }
   };
