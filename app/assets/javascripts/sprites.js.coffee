@@ -3,6 +3,7 @@
 # init_graphics - a callback to set up createjs stuff
 # stage - a createjs stage
 # loader - a createjs image preload queue
+# terrain_tilesheet - a tilesheet for the terrain layer
 #
 # Variables expected in window, often optional:
 #
@@ -52,12 +53,12 @@ handleSpritesLoaded = () ->
   for sheet in window.sprite_sheets
     preloaded_imgs = []
     preloaded_imgs.push(window.loader.getResult image) for image in sheet.images
-    window[sheet.name] = new createjs.SpriteSheet frames: sheet.frames, images: preloaded_imgs
+    sheet.object = new createjs.SpriteSheet frames: sheet.frames, images: preloaded_imgs
 
-  tilesheet = new Tilesheet(55, 42, 32, 32, window.terrain_spritesheet)
+  tilesheet = new Tilesheet(55, 42, 32, 32, window.sprite_sheets[0].object)
+  window.stage.addChild(tilesheet.container)
 
   window.terrain_tilesheet = tilesheet
-  window.stage.addChild(tilesheet.container)
 
   createjs.Ticker.timingMode = createjs.Ticker.RAF
   createjs.Ticker.addEventListener("tick", tick)
