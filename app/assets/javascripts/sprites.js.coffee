@@ -10,6 +10,7 @@ window.initMap = () ->
   loader = new createjs.LoadQueue(false)
   loader.addEventListener "complete", handleSpritesLoaded
   loader.loadManifest manifest
+  window.loader = loader
 
 class Tilesheet
   constructor: (@w, @h, @tile_w, @tile_h, @spritesheet) ->
@@ -38,7 +39,9 @@ handleSpritesLoaded = () ->
   $("#loader")[0].className = ""
 
   for sheet in window.sprite_sheets
-    window[sheet.name] = new createjs.SpriteSheet(sheet)
+    preloaded_imgs = []
+    preloaded_imgs.push(window.loader.getResult image) for image in sheet.images
+    window[sheet.name] = new createjs.SpriteSheet frames: sheet.frames, images: preloaded_imgs
 
   tilesheet = new Tilesheet(55, 42, 32, 32, window.terrain_spritesheet)
 
