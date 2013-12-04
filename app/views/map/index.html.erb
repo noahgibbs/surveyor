@@ -1,6 +1,7 @@
 <%= javascript_tag do %>
-  window.spriteSheets = [
+  window.sprite_sheets = [
     {
+      name: "terrain_spritesheet",
       images: [ "./terrain.png" ],
       frames: { width:32, height: 32 }
     }
@@ -10,7 +11,7 @@
 
   window.on_tick = function() {
     if(window.already_ticked != "true") {
-      window.setSprites( <%= @tile_data.inspect %> );
+      window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
       window.already_ticked = "true";
     }
   };

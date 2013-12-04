@@ -3,38 +3,47 @@ window.initMap = () ->
   stage = window.stage
 
   manifest = []
-  for sheet in window.spriteSheets
+  for sheet in window.sprite_sheets
     for image in sheet.images
       manifest.push src: image, id: image
 
   loader = new createjs.LoadQueue(false)
   loader.addEventListener "complete", handleSpritesLoaded
   loader.loadManifest manifest
-  window.loader = loader
 
-# TODO: add tilesheet class
+class Tilesheet
+  constructor: (@w, @h, @tile_w, @tile_h, @spritesheet) ->
+    @container = new createjs.Container()
+    @sprites = []
+
+    for h in [0..(@h-1)]
+      @sprites[h] = []
+      for w in [0..(@w-1)]
+        @sprites[h][w] = new createjs.Sprite(@spritesheet)
+        @sprites[h][w].setTransform(w * @tile_w, h * @tile_h)
+        @sprites[h][w].gotoAndStop(0)
+        @container.addChild @sprites[h][w]
+
+  set_sprites: (data) ->
+    i = 0
+    while i < data.length
+      j = 0
+      while j < data[i].length
+        @sprites[i][j].gotoAndStop(data[i][j])
+        j++
+      i++
 
 handleSpritesLoaded = () ->
   # Is this needed?
   $("#loader")[0].className = ""
 
-  window.terrain_spritesheet = new createjs.SpriteSheet({
-			images: [window.loader.getResult "./terrain.png"],
-			frames: { width:32, height: 32 }
-		});
+  for sheet in window.sprite_sheets
+    window[sheet.name] = new createjs.SpriteSheet(sheet)
 
-  # Empty array-of-arrays, 55w by 42h
-  sprites = []
+  tilesheet = new Tilesheet(55, 42, 32, 32, window.terrain_spritesheet)
 
-  for h in [0..41]
-    sprites[h] = []
-    for w in [0..55]
-      sprites[h][w] = new createjs.Sprite(window.terrain_spritesheet)
-      sprites[h][w].setTransform(w * 32.0, h * 32.0)
-      sprites[h][w].gotoAndStop(0)
-      window.stage.addChild sprites[h][w]
-
-  window.terrain_sprites = sprites
+  window.terrain_tilesheet = tilesheet
+  window.stage.addChild(tilesheet.container)
 
   createjs.Ticker.timingMode = createjs.Ticker.RAF
   createjs.Ticker.addEventListener("tick", tick)
@@ -43,12 +52,3 @@ tick = (event) ->
   if window.on_tick
     window.on_tick(event)
   window.stage.update()
-
-window.setSprites = (data) ->
-  i = 0
-  while i < data.length
-    j = 0
-    while j < data[i].length
-      window.terrain_sprites[i][j].gotoAndStop(data[i][j])
-      j++
-    i++
