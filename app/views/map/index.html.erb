@@ -9,10 +9,10 @@
     {
       name: "skeleton",
       images: [
-        "/sprites/skeleton_walkcycle.png",  # 0-36
-        "/sprites/skeleton_hurt.png",
-        "/sprites/skeleton_slash.png",
-        "/sprites/skeleton_spellcast.png"
+        "/sprites/skeleton_walkcycle.png",  // 0-35
+        "/sprites/skeleton_hurt.png",       // 36-41
+        "/sprites/skeleton_slash.png",      // 42-65
+        "/sprites/skeleton_spellcast.png"   // 66-93
       ],
       frames: { width:64, height: 64 },
       animations: {
@@ -20,6 +20,7 @@
         walk_up: [1, 8],
         stand_left: 9,
         walk_left: [10, 17],
+        hurt: [36,41,"hurt",0.25],
         fake: 0
       }
     }
