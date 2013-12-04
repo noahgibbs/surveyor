@@ -1,4 +1,15 @@
-window.initMap = () ->
+# Variables added to window:
+#
+# init_graphics - a callback to set up createjs stuff
+# stage - a createjs stage
+# loader - a createjs image preload queue
+#
+# Variables expected in window, often optional:
+#
+# sprite_sheets - a list of Objects specifying createjs spritesheet objects
+# on_tick - a callback for each createjs tick on the stage
+
+window.init_graphics = () ->
   window.stage = new createjs.Stage "displayCanvas"
   stage = window.stage
 
