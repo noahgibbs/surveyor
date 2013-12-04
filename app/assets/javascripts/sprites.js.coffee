@@ -2,22 +2,24 @@ window.initMap = () ->
   window.stage = new createjs.Stage "displayCanvas"
   stage = window.stage
 
-  manifest = [
-    { src: "./terrain.png", id:"terrain"}
-  ]
+  manifest = []
+  for sheet in window.spriteSheets
+    for image in sheet.images
+      manifest.push src: image, id: image
 
   loader = new createjs.LoadQueue(false)
-  loader.addEventListener "complete", handleTerrainLoaded
+  loader.addEventListener "complete", handleSpritesLoaded
   loader.loadManifest manifest
   window.loader = loader
 
-handleTerrainLoaded = () ->
-  terrainLoaded = true
+# TODO: add tilesheet class
 
+handleSpritesLoaded = () ->
+  # Is this needed?
   $("#loader")[0].className = ""
 
   window.terrain_spritesheet = new createjs.SpriteSheet({
-			images: [window.loader.getResult "terrain"],
+			images: [window.loader.getResult "./terrain.png"],
 			frames: { width:32, height: 32 }
 		});
 

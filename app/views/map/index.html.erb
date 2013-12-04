@@ -1,4 +1,11 @@
 <%= javascript_tag do %>
+  window.spriteSheets = [
+    {
+      images: [ "./terrain.png" ],
+      frames: { width:32, height: 32 }
+    }
+  ];
+
   $(window.initMap);
 
   window.on_tick = function() {
