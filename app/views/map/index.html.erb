@@ -23,6 +23,24 @@
         hurt: [36,41,"hurt",0.25],
         fake: 0
       }
+    },
+    {
+      name: "kettle_hat_male",
+      images: [
+        "/sprites/kettle_hat_male_walkcycle.png",  // 0-35
+        "/sprites/kettle_hat_male_hurt.png",       // 36-41
+        "/sprites/kettle_hat_male_slash.png",      // 42-65
+        "/sprites/kettle_hat_male_spellcast.png"   // 66-93
+      ],
+      frames: { width:64, height: 64 },
+      animations: {
+        stand_up: 0,
+        walk_up: [1, 8],
+        stand_left: 9,
+        walk_left: [10, 17],
+        hurt: [36,41,"hurt",0.25],
+        fake: 0
+      }
     }
 
   ];
@@ -35,6 +53,10 @@
       window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
 
       var sprite = new createjs.Sprite(window.sprite_sheets[1].object);
+      sprite.gotoAndPlay("walk_left");
+      window.stage.addChild(sprite);
+
+      var sprite = new createjs.Sprite(window.sprite_sheets[2].object);
       sprite.gotoAndPlay("walk_left");
       window.stage.addChild(sprite);
 
