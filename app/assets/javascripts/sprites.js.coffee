@@ -14,6 +14,35 @@ window.init_graphics = () ->
   window.stage = new createjs.Stage "displayCanvas"
   stage = window.stage
 
+  for humanoid_name, humanoid of window.humanoid_animations
+    window.sprite_sheets.push
+      name: humanoid_name,
+      images: [
+        "/sprites/#{humanoid_name}_walkcycle.png",  # 0-35
+        "/sprites/#{humanoid_name}_hurt.png",       # 36-41
+        "/sprites/#{humanoid_name}_slash.png",      # 42-65
+        "/sprites/#{humanoid_name}_spellcast.png"   # 66-93
+      ],
+      frames: { width: 64, height: 64 },
+      animations:
+        stand_up: 0
+        walk_up: [1, 8]
+        stand_left: 9
+        walk_left: [10, 17]
+        stand_down: 18
+        walk_down: [19, 26]
+        stand_right: 27
+        walk_right: [28, 35]
+        hurt: [36,41,"hurt",0.25]
+        slash_up: [42, 47]
+        slash_left: [48, 53]
+        slash_down: [54, 59]
+        slash_right: [60, 65]
+        spellcast_up: [66, 72]
+        spellcast_left: [73, 79]
+        spellcast_down: [80, 86]
+        spellcast_right: [87, 93]
+
   manifest = []
   for sheet in window.sprite_sheets
     for image in sheet.images
@@ -24,7 +53,7 @@ window.init_graphics = () ->
   loader.loadManifest manifest
   window.loader = loader
 
-class Tilesheet
+class window.Tilesheet
   constructor: (@w, @h, @tile_w, @tile_h, @spritesheet) ->
     @container = new createjs.Container()
     @sprites = []

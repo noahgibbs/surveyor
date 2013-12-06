@@ -1,46 +1,16 @@
 <%= javascript_tag do %>
+  // This can be quite short when everything uses defaults
+  window.humanoid_animations = {
+    "skeleton": {},
+    "kettle_hat_male": {}
+  }
+
   window.sprite_sheets = [
     {
       name: "terrain_spritesheet",
       images: [ "./terrain.png" ],
       frames: { width:32, height: 32 },
       animations: {}
-    },
-    {
-      name: "skeleton",
-      images: [
-        "/sprites/skeleton_walkcycle.png",  // 0-35
-        "/sprites/skeleton_hurt.png",       // 36-41
-        "/sprites/skeleton_slash.png",      // 42-65
-        "/sprites/skeleton_spellcast.png"   // 66-93
-      ],
-      frames: { width:64, height: 64 },
-      animations: {
-        stand_up: 0,
-        walk_up: [1, 8],
-        stand_left: 9,
-        walk_left: [10, 17],
-        hurt: [36,41,"hurt",0.25],
-        fake: 0
-      }
-    },
-    {
-      name: "kettle_hat_male",
-      images: [
-        "/sprites/kettle_hat_male_walkcycle.png",  // 0-35
-        "/sprites/kettle_hat_male_hurt.png",       // 36-41
-        "/sprites/kettle_hat_male_slash.png",      // 42-65
-        "/sprites/kettle_hat_male_spellcast.png"   // 66-93
-      ],
-      frames: { width:64, height: 64 },
-      animations: {
-        stand_up: 0,
-        walk_up: [1, 8],
-        stand_left: 9,
-        walk_left: [10, 17],
-        hurt: [36,41,"hurt",0.25],
-        fake: 0
-      }
     }
 
   ];
