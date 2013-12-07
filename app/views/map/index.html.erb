@@ -1,18 +1,17 @@
 <%= javascript_tag do %>
   // This can be quite short when everything uses defaults
-  window.humanoid_animations = {
-    "skeleton": {},
-    "kettle_hat_male": {}
-  }
+  window.humanoid_animations = [
+    new Humanoid("skeleton"),
+    new Humanoid("kettle_hat_male")
+  ]
 
-  window.sprite_sheets = [
-    {
-      name: "terrain_spritesheet",
-      images: [ "./terrain.png" ],
-      frames: { width:32, height: 32 },
-      animations: {}
-    }
-
+  window.sprite_sheet_params = [
+      {
+        name: "terrain_spritesheet",
+        images: [ "./terrain.png" ],
+        frames: { width:32, height: 32 },
+        animations: {}
+      }
   ];
 
   $(window.init_graphics);
@@ -22,11 +21,11 @@
 
       window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
 
-      var sprite = new createjs.Sprite(window.sprite_sheets[1].object);
+      var sprite = new createjs.Sprite(window.sprite_sheet_params[1].sprite_sheet);
       sprite.gotoAndPlay("walk_left");
       window.stage.addChild(sprite);
 
-      var sprite = new createjs.Sprite(window.sprite_sheets[2].object);
+      var sprite = new createjs.Sprite(window.sprite_sheet_params[2].sprite_sheet);
       sprite.gotoAndPlay("walk_left");
       window.stage.addChild(sprite);
 
