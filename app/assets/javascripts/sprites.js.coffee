@@ -1,4 +1,4 @@
-# Variables added to window:
+# Variables this library adds to window:
 #
 # init_graphics - a callback to set up createjs stuff
 # stage - a createjs stage
@@ -9,7 +9,8 @@
 #
 # humanoid_animations - a list of Humanoid objects specifying person, creature or equipment humanoid animations
 # sprite_sheet_params - a dictionary of Objects specifying createjs spritesheet objects by name
-# on_tick - a callback for each createjs tick on the stage
+# on_cjs_init - a callback prior to createjs ticks on the stage
+# on_cjs_tick - a callback for each createjs tick on the stage
 
 window.init_graphics = () ->
   window.stage = new createjs.Stage "displayCanvas"
@@ -33,8 +34,8 @@ class window.Humanoid
     @options = {} unless @options?
     @direction = @options.direction || "right"
     @action = @options.action || "stand"
-    @tile_x = @options.x || 1
-    @tile_y = @options.y || 1
+    @x = @options.x || 1
+    @y = @options.y || 1
 
   as_sprite_sheet: () ->
     name: @name,
@@ -66,6 +67,8 @@ class window.Humanoid
 
   init: (@stage) ->
     @sprite = new createjs.Sprite window.sprite_sheet_params[@name].sprite_sheet
+    @sprite.framerate = 7
+    @sprite.setTransform @x, @y
     @sprite.gotoAndPlay "#{@action}_#{@direction}"
     @stage.addChild(@sprite)
 
@@ -105,10 +108,12 @@ handleSpritesLoaded = () ->
 
   window.terrain_tilesheet = tilesheet
 
+  window.on_cjs_init() if window.on_cjs_init
+
   createjs.Ticker.timingMode = createjs.Ticker.RAF
   createjs.Ticker.addEventListener("tick", tick)
 
 tick = (event) ->
-  if window.on_tick
-    window.on_tick(event)
-  window.stage.update()
+  if window.on_cjs_tick
+    window.on_cjs_tick(event)
+  window.stage.update(event)

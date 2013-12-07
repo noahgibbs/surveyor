@@ -1,7 +1,7 @@
 <%= javascript_tag do %>
   window.humanoid_animations = [
-    new Humanoid("skeleton", { direction: "left", action: "walk" }),
-    new Humanoid("kettle_hat_male", { direction: "left", action: "walk" })
+    new Humanoid("skeleton", { direction: "down", action: "walk", x: 100 }),
+    new Humanoid("kettle_hat_male", { direction: "down", action: "walk", x: 100 })
   ]
 
   window.sprite_sheet_params = {
@@ -14,23 +14,13 @@
 
   $(window.init_graphics);
 
-  window.on_tick = function() {
-    if(window.already_ticked != "true") {
+  window.on_cjs_init = function() {
+    window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
 
-      window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
+    Humanoid.init_with_stage(window.stage);
+  }
 
-      //Humanoid.init_with_stage(window.stage);
-
-      var sprite = new createjs.Sprite(window.sprite_sheet_params["skeleton"].sprite_sheet);
-      sprite.gotoAndPlay("walk_left");
-      window.stage.addChild(sprite);
-
-      var sprite = new createjs.Sprite(window.sprite_sheet_params["kettle_hat_male"].sprite_sheet);
-      sprite.gotoAndPlay("walk_left");
-      window.stage.addChild(sprite);
-
-      window.already_ticked = "true";
-    }
+  window.on_cjs_tick = function() {
   };
 <% end %>
 
