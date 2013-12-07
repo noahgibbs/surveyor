@@ -8,7 +8,20 @@
   };
 
   window.humanoids = [
-    new Humanoid("skeleton1", { direction: "down", action: "walk", x: 100, y:50, animation_stack: ["skeleton", "kettle_hat_male"] })
+    new Humanoid("skeleton1",
+      {
+        direction: "down",
+        action: "walk",
+        x: 100, y:50,
+        animation_stack: ["skeleton", "robe_male", "kettle_hat_male"]
+      }),
+    new Humanoid("skeleton2",
+      {
+        direction: "left",
+        action: "slash",
+        x: 300, y:100,
+        animation_stack: ["skeleton", "chain_armor_female", "plate_shoulder_pad_male", "leather_bracers_male"]
+      })
   ]
 
   $(window.init_graphics);
