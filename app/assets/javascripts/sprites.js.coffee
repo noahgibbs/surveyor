@@ -7,7 +7,7 @@
 #
 # Variables expected in window, often optional:
 #
-# humanoid_animations - a list of Humanoid objects specifying person, creature or equipment humanoid animations
+# humanoids - a list of Humanoid objects specifying sprite-stacks with humanlike animations
 # sprite_sheet_params - a dictionary of Objects specifying createjs spritesheet objects by name
 # on_cjs_init - a callback prior to createjs ticks on the stage
 # on_cjs_tick - a callback for each createjs tick on the stage
@@ -15,9 +15,6 @@
 window.init_graphics = () ->
   window.stage = new createjs.Stage "displayCanvas"
   stage = window.stage
-
-  for humanoid in window.humanoid_animations
-    window.sprite_sheet_params[humanoid.name] = humanoid.as_sprite_sheet()
 
   manifest = []
   for own sheet_name, sheet of window.sprite_sheet_params
@@ -29,6 +26,35 @@ window.init_graphics = () ->
   loader.loadManifest manifest
   window.loader = loader
 
+add_humanoid_animation = (name) ->
+  unless window.sprite_sheet_params[name]?
+    window.sprite_sheet_params[name] =
+      images: [
+        "/sprites/#{name}_walkcycle.png",  # 0-35
+        "/sprites/#{name}_hurt.png",       # 36-41
+        "/sprites/#{name}_slash.png",      # 42-65
+        "/sprites/#{name}_spellcast.png"   # 66-93
+      ],
+      frames: { width: 64, height: 64 },
+      animations:
+        stand_up: 0
+        walk_up: [1, 8]
+        stand_left: 9
+        walk_left: [10, 17]
+        stand_down: 18
+        walk_down: [19, 26]
+        stand_right: 27
+        walk_right: [28, 35]
+        hurt: [36,41,"hurt",0.25]
+        slash_up: [42, 47]
+        slash_left: [48, 53]
+        slash_down: [54, 59]
+        slash_right: [60, 65]
+        spellcast_up: [66, 72]
+        spellcast_left: [73, 79]
+        spellcast_down: [80, 86]
+        spellcast_right: [87, 93]
+
 class window.Humanoid
   constructor: (@name, @options) ->
     @options = {} unless @options?
@@ -36,44 +62,28 @@ class window.Humanoid
     @action = @options.action || "stand"
     @x = @options.x || 1
     @y = @options.y || 1
-
-  as_sprite_sheet: () ->
-    name: @name,
-    images: [
-      "/sprites/#{@name}_walkcycle.png",  # 0-35
-      "/sprites/#{@name}_hurt.png",       # 36-41
-      "/sprites/#{@name}_slash.png",      # 42-65
-      "/sprites/#{@name}_spellcast.png"   # 66-93
-    ],
-    frames: { width: 64, height: 64 },
-    animations:
-      stand_up: 0
-      walk_up: [1, 8]
-      stand_left: 9
-      walk_left: [10, 17]
-      stand_down: 18
-      walk_down: [19, 26]
-      stand_right: 27
-      walk_right: [28, 35]
-      hurt: [36,41,"hurt",0.25]
-      slash_up: [42, 47]
-      slash_left: [48, 53]
-      slash_down: [54, 59]
-      slash_right: [60, 65]
-      spellcast_up: [66, 72]
-      spellcast_left: [73, 79]
-      spellcast_down: [80, 86]
-      spellcast_right: [87, 93]
+    @animation_stack = @options.animation_stack || [@name]
+    add_humanoid_animation(animation) for animation in @animation_stack
 
   init: (@stage) ->
-    @sprite = new createjs.Sprite window.sprite_sheet_params[@name].sprite_sheet
-    @sprite.framerate = 7
-    @sprite.setTransform @x, @y
-    @sprite.gotoAndPlay "#{@action}_#{@direction}"
-    @stage.addChild(@sprite)
+    @container = new createjs.Container
+    @stage.addChild @container
+
+    @sprite_stack = []
+    for anim in @animation_stack
+      sprite = new createjs.Sprite window.sprite_sheet_params[anim].sprite_sheet
+      @sprite_stack.push sprite
+      @container.addChild sprite
+    this.set_sprite_params()
+
+  set_sprite_params: () ->
+    @container.setTransform @x, @y
+    for sprite in @sprite_stack
+      sprite.framerate = 7
+      sprite.gotoAndPlay "#{@action}_#{@direction}"
 
 window.Humanoid.init_with_stage = (stage) ->
-  for humanoid in window.humanoid_animations
+  for humanoid in window.humanoids
     humanoid.init(stage)
 
 class window.Tilesheet
