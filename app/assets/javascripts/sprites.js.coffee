@@ -8,7 +8,7 @@
 # Variables expected in window, often optional:
 #
 # humanoid_animations - a list of Humanoid objects specifying person, creature or equipment humanoid animations
-# sprite_sheet_params - a list of Objects specifying createjs spritesheet objects
+# sprite_sheet_params - a dictionary of Objects specifying createjs spritesheet objects by name
 # on_tick - a callback for each createjs tick on the stage
 
 window.init_graphics = () ->
@@ -16,10 +16,10 @@ window.init_graphics = () ->
   stage = window.stage
 
   for humanoid in window.humanoid_animations
-    window.sprite_sheet_params.push humanoid.as_sprite_sheet()
+    window.sprite_sheet_params[humanoid.name] = humanoid.as_sprite_sheet()
 
   manifest = []
-  for sheet in window.sprite_sheet_params
+  for own sheet_name, sheet of window.sprite_sheet_params
     for image in sheet.images
       manifest.push src: image, id: image
 
@@ -64,7 +64,14 @@ class window.Humanoid
       spellcast_down: [80, 86]
       spellcast_right: [87, 93]
 
-  init: () ->
+  init: (@stage) ->
+    @sprite = new createjs.Sprite window.sprite_sheet_params[@name].sprite_sheet
+    @sprite.gotoAndPlay "#{@action}_#{@direction}"
+    @stage.addChild(@sprite)
+
+window.Humanoid.init_with_stage = (stage) ->
+  for humanoid in window.humanoid_animations
+    humanoid.init(stage)
 
 class window.Tilesheet
   constructor: (@w, @h, @tile_w, @tile_h, @spritesheet) ->
@@ -88,12 +95,12 @@ handleSpritesLoaded = () ->
   # Is this needed?
   $("#loader")[0].className = ""
 
-  for sheet in window.sprite_sheet_params
+  for own sheet_name, sheet of window.sprite_sheet_params
     preloaded_imgs = (window.loader.getResult(image) for image in sheet.images)
     sheet.sprite_sheet = new createjs.SpriteSheet
       frames: sheet.frames, images: preloaded_imgs, animations: sheet.animations
 
-  tilesheet = new Tilesheet(55, 42, 32, 32, window.sprite_sheet_params[0].sprite_sheet)
+  tilesheet = new Tilesheet(55, 42, 32, 32, window.sprite_sheet_params["terrain_spritesheet"].sprite_sheet)
   window.stage.addChild(tilesheet.container)
 
   window.terrain_tilesheet = tilesheet
