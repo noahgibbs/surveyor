@@ -1,12 +1,4 @@
 <%= javascript_tag do %>
-  window.sprite_sheet_params = {
-    "terrain_spritesheet": {
-      images: [ "./terrain.png" ],
-      frames: { width:32, height: 32 },
-      animations: {}
-    }
-  };
-
   window.terrain_config = {
     tile_width: <%= @tile_width_in_pixels %>,
     tile_height: <%= @tile_height_in_pixels %>,
