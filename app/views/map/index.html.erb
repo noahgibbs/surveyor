@@ -23,6 +23,7 @@
     <% end %>
       {}
   ];
+  window.terrain_tilesets.pop();  // Remove final empty entry
 
   window.terrain_layers = [
     <% @tile_layers.each do |layer| %>
@@ -33,6 +34,7 @@
     <% end %>
       {}
   ];
+  window.terrain_layers.pop();  // Remove final empty entry
 
   window.humanoids = [
     new Humanoid("skeleton1",
