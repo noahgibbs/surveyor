@@ -12,23 +12,30 @@
 # on_cjs_init - a callback prior to createjs ticks on the stage
 # on_cjs_tick - a callback for each createjs tick on the stage
 
+images_to_preload = []
+
 window.init_graphics = () ->
   window.stage = new createjs.Stage "displayCanvas"
   stage = window.stage
 
+  add_image_to_preload("./terrain.png")
   manifest = []
-  for own sheet_name, sheet of window.sprite_sheet_params
-    for image in sheet.images
-      manifest.push src: image, id: image
+  for image in images_to_preload
+    manifest.push src: image, id: image
 
   loader = new createjs.LoadQueue(false)
   loader.addEventListener "complete", handleSpritesLoaded
   loader.loadManifest manifest
   window.loader = loader
 
+add_image_to_preload = (image_url) ->
+  images_to_preload.push image_url
+
+humanoid_sprite_sheet_params = {}
+humanoid_sprite_sheets = {}
 add_humanoid_animation = (name) ->
-  unless window.sprite_sheet_params[name]?
-    window.sprite_sheet_params[name] =
+  unless humanoid_sprite_sheet_params[name]
+    humanoid_sprite_sheet_params[name] =
       images: [
         "/sprites/#{name}_walkcycle.png",  # 0-35
         "/sprites/#{name}_hurt.png",       # 36-41
@@ -55,6 +62,8 @@ add_humanoid_animation = (name) ->
         spellcast_down: [80, 86]
         spellcast_right: [87, 93]
 
+    add_image_to_preload(image) for image in humanoid_sprite_sheet_params[name].images
+
 class window.Humanoid
   constructor: (@name, @options) ->
     @options = {} unless @options?
@@ -71,7 +80,7 @@ class window.Humanoid
 
     @sprite_stack = []
     for anim in @animation_stack
-      sprite = new createjs.Sprite window.sprite_sheet_params[anim].sprite_sheet
+      sprite = new createjs.Sprite humanoid_sprite_sheets[anim]
       @sprite_stack.push sprite
       @container.addChild sprite
     this.set_sprite_params()
@@ -111,6 +120,11 @@ handleSpritesLoaded = () ->
   for own sheet_name, sheet of window.sprite_sheet_params
     preloaded_imgs = (window.loader.getResult(image) for image in sheet.images)
     sheet.sprite_sheet = new createjs.SpriteSheet
+      frames: sheet.frames, images: preloaded_imgs, animations: sheet.animations
+
+  for own sheet_name, sheet of humanoid_sprite_sheet_params
+    preloaded_imgs = (window.loader.getResult(image) for image in sheet.images)
+    humanoid_sprite_sheets[sheet_name] = new createjs.SpriteSheet
       frames: sheet.frames, images: preloaded_imgs, animations: sheet.animations
 
   tilesheet = new Tilesheet(55, 42, 32, 32, window.sprite_sheet_params["terrain_spritesheet"].sprite_sheet)
