@@ -1,7 +1,7 @@
 class MapController < ApplicationController
   def index
     # This recursively loads things like tileset .tsx files
-    tiles = Tmx.load File.join(Rails.root, "public", "terrain-test.tmx")
+    tiles = Tmx.load File.join(Rails.root, "terrains", "terrain-test.tmx")
 
     @width_in_tiles = tiles.width
     @height_in_tiles = tiles.height
@@ -10,7 +10,8 @@ class MapController < ApplicationController
 
     # Tilesets
     @tilesets = tiles.tilesets.map do |tileset|
-      [tileset.firstgid, "/tiles/" + tileset.image.split("/")[-1]]
+      [tileset.firstgid, "/tiles/" + tileset.image.split("/")[-1],
+       tileset.imagewidth, tileset.imageheight, tileset.properties]
     end
 
     @tile_layers = tiles.layers.map do |layer|
