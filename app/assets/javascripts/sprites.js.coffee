@@ -8,6 +8,9 @@
 # Variables expected in window, often optional:
 #
 # humanoids - a list of Humanoid objects specifying sprite-stacks with humanlike animations
+# terrain_config - a dictionary with entries tile_width, tile_height, width, height
+# terrain_tilesets - a list of tilesets for terrains
+# terrain_layers - a list of layers of terrain data
 # sprite_sheet_params - a dictionary of Objects specifying createjs spritesheet objects by name
 # on_cjs_init - a callback prior to createjs ticks on the stage
 # on_cjs_tick - a callback for each createjs tick on the stage
@@ -19,6 +22,9 @@ window.init_graphics = () ->
   stage = window.stage
 
   add_image_to_preload("./terrain.png")
+  add_image_to_preload(tileset.image) for tileset in window.terrain_tilesets
+  add_image_to_preload(image) for image in params.images for name, params of humanoid_sprite_sheet_params
+
   manifest = []
   for image in images_to_preload
     manifest.push src: image, id: image
@@ -29,7 +35,7 @@ window.init_graphics = () ->
   window.loader = loader
 
 add_image_to_preload = (image_url) ->
-  images_to_preload.push image_url
+  images_to_preload.push image_url if image_url?
 
 humanoid_sprite_sheet_params = {}
 humanoid_sprite_sheets = {}
@@ -61,8 +67,6 @@ add_humanoid_animation = (name) ->
         spellcast_left: [73, 79]
         spellcast_down: [80, 86]
         spellcast_right: [87, 93]
-
-    add_image_to_preload(image) for image in humanoid_sprite_sheet_params[name].images
 
 class window.Humanoid
   constructor: (@name, @options) ->

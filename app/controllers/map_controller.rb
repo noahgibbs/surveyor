@@ -8,7 +8,17 @@ class MapController < ApplicationController
     @tile_width_in_pixels = tiles.tilewidth
     @tile_height_in_pixels = tiles.tileheight
 
-    # Map from layer tile numbers to tileset tile numbers
+    # Tilesets
+    @tilesets = tiles.tilesets.map do |tileset|
+      [tileset.firstgid, "/tiles/" + tileset.image.split("/")[-1]]
+    end
+
+    @tile_layers = tiles.layers.map do |layer|
+      data = layer.data.each_slice(layer.width).to_a
+      [layer.name, data]
+    end
+
+    # Old hardcoding of single terrain layer and tileset
     data = tiles.layers.first.data
     firstgid = tiles.tilesets.first.firstgid
     data.map! { |tilenum| tilenum - firstgid }
