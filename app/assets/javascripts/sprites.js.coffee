@@ -34,7 +34,7 @@ handleSpritesLoaded = () ->
   $("#loader")[0].className = ""
 
   Humanoid.images_loaded()
-  Terrain.images_loaded()
+  Terrain.init_with_stage(window.stage)
 
   window.on_cjs_init() if window.on_cjs_init
 

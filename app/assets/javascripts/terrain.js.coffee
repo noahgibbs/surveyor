@@ -8,40 +8,66 @@
 # terrain_tilesets - a list of tilesets for terrains
 # terrain_layers - a list of layers of terrain data
 
+terrains = []
+
 class window.Terrain
-  # Empty - this is for setting up hooks and interface
+  constructor: (@w, @h, @tw, @th, @tilesets, @layers) ->
+    terrains.push this
+
+    # Tiled uses the value "0" to mean "no terrain"
+    @tilesets.unshift firstgid: 0, image: "/tiles/empty32.png", image_width: 32, image_height: 32
+
+    @container = new createjs.Container
+
+    # CreateJS allows specifying sprites in a spritesheet only based on its own calculated offsets,
+    # unless we manually specify every frame for every image.  So instead, we'll calculate how many
+    # sprites each spritesheet contains.  Basically, we track what offset CreateJS will happen to
+    # be using in the spritesheet at the start of each tileset image.
+    #
+    # In many cases, this will be a constant offset from firstgid.  But we can't bet on that, and
+    # we don't want weird bugs if anybody "messes it up".
+    #
+    offset = 0
+    for tileset in @tilesets
+      tileset.cjs_frame_offset = offset
+      ts_size = (tileset.image_width / @tw) * (tileset.image_height / @th)
+      offset += ts_size
+
+  gid_to_tileset_and_id: (gid) ->
+    for tileset, offset in @tilesets
+      if gid >= tileset.firstgid && (!@tilesets[offset + 1]? || gid < @tilesets[offset + 1].firstgid)
+        return [tileset, gid - tileset.firstgid]
+    alert "Can't map GID #{gid} to tileset and ID!"
+    false
+
+  images_to_load: () ->
+    images = (tileset.image for tileset in @tilesets)
+
+  init_with_stage: (@stage) ->
+    preloads = (window.loader.getResult(tileset.image) for tileset in @tilesets)
+    @sprite_sheet = new createjs.SpriteSheet frames: { width: @tw, height: @th }, images: preloads
+
+    for layer in @layers
+      sprites = []
+      layer.container = new createjs.Container
+      @container.addChild layer.container
+
+      for h in [0..(@h-1)]
+        sprites[h] = []
+        for w in [0..(@w-1)]
+          sprites[h][w] = new createjs.Sprite(@sprite_sheet)
+          sprites[h][w].setTransform(w * @tw, h * @th)
+          [tileset, id] = this.gid_to_tileset_and_id layer.data[h][w]
+          console.debug("Can't resolve", layer.data[h][w], layer.name, h, w) unless tileset?
+          sprites[h][w].gotoAndStop(tileset.cjs_frame_offset + id)
+          layer.container.addChild sprites[h][w]
+
+    @stage.addChild(@container)
 
 window.Terrain.images_to_load = () ->
-  images = tileset.image for tileset in window.terrain_tilesets
+  images = []
+  images = images.concat(terrain.images_to_load()) for terrain in terrains
+  images
 
-# Hook to indicate images have been loaded
-window.Terrain.images_loaded = () ->
-  sprite_sheet = new createjs.SpriteSheet
-    frames: { width: 32, height: 32}, images: [window.loader.getResult("/tiles/terrain.png")]
-
-  config = window.terrain_config
-  tilesheet = new Tilesheet(config.width, config.height, 32, 32, sprite_sheet)
-  window.stage.addChild(tilesheet.container)
-  window.terrain_tilesheet = tilesheet
-
-class window.Tilesheet
-  constructor: (@w, @h, @tile_w, @tile_h, @spritesheet) ->
-    @container = new createjs.Container()
-    @sprites = []
-
-    for h in [0..(@h-1)]
-      @sprites[h] = []
-      for w in [0..(@w-1)]
-        @sprites[h][w] = new createjs.Sprite(@spritesheet)
-        @sprites[h][w].setTransform(w * @tile_w, h * @tile_h)
-        @sprites[h][w].gotoAndStop(0)
-        @container.addChild @sprites[h][w]
-
-  set_sprites: (data) ->
-    for row, i in data
-      for terrain_val, j in row
-        @sprites[i][j].gotoAndStop terrain_val
-
-class window.TerrainTileset
-
-class window.TerrainLayer
+window.Terrain.init_with_stage = (stage) ->
+  terrain.init_with_stage(stage) for terrain in terrains

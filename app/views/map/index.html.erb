@@ -1,23 +1,19 @@
 <%= javascript_tag do %>
-  window.terrain_config = {
-    tile_width: <%= @tile_width_in_pixels %>,
-    tile_height: <%= @tile_height_in_pixels %>,
-    width: <%= @width_in_tiles %>,
-    height: <%= @height_in_tiles %>
-  };
-
-  window.terrain_tilesets = [
+  var terrain_tilesets = [
     <% @tilesets.each do |tileset| %>
       {
         firstgid: <%= tileset[0] %>,
-        image: <%= tileset[1].to_json.html_safe %>
+        image: <%= tileset[1].to_json.html_safe %>,
+        image_width: <%= tileset[2] %>,
+        image_height: <%= tileset[3] %>,
+        properties: <%= tileset[4].to_json.html_safe %>
       },
     <% end %>
       {}
   ];
-  window.terrain_tilesets.pop();  // Remove final empty entry
+  terrain_tilesets.pop();  // Remove final empty entry
 
-  window.terrain_layers = [
+  var terrain_layers = [
     <% @tile_layers.each do |layer| %>
       {
         name: <%= layer[0].to_json.html_safe %>,
@@ -26,7 +22,11 @@
     <% end %>
       {}
   ];
-  window.terrain_layers.pop();  // Remove final empty entry
+  terrain_layers.pop();  // Remove final empty entry
+
+  window.terrain = new Terrain(<%= @width_in_tiles %>,
+    <%= @height_in_tiles %>, <%= @tile_width_in_pixels %>,
+    <%= @tile_height_in_pixels %>, terrain_tilesets, terrain_layers);
 
   window.humanoids = [
     new Humanoid("skeleton1",
@@ -49,9 +49,7 @@
   $(window.init_graphics);
 
   window.on_cjs_init = function() {
-    window.terrain_tilesheet.set_sprites( <%= @tile_data.inspect %> );
-
-    // Instantiate all humanoid animations
+    // TODO: library should do this automatically
     Humanoid.init_with_stage(window.stage);
   }
 
