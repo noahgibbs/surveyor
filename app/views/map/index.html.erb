@@ -2,11 +2,11 @@
   var terrain_tilesets = [
     <% @tilesets.each do |tileset| %>
       {
-        firstgid: <%= tileset[0] %>,
-        image: <%= tileset[1].to_json.html_safe %>,
-        image_width: <%= tileset[2] %>,
-        image_height: <%= tileset[3] %>,
-        properties: <%= tileset[4].to_json.html_safe %>
+        firstgid: <%= tileset[:firstgid] %>,
+        image: <%= tileset[:url].to_json.html_safe %>,
+        image_width: <%= tileset[:image_width] %>,
+        image_height: <%= tileset[:image_height] %>,
+        properties: <%= tileset[:properties].to_json.html_safe %>
       },
     <% end %>
       {}
@@ -16,8 +16,9 @@
   var terrain_layers = [
     <% @tile_layers.each do |layer| %>
       {
-        name: <%= layer[0].to_json.html_safe %>,
-        data: <%= layer[1].to_json.html_safe %>
+        name: <%= layer[:name].to_json.html_safe %>,
+        data: <%= layer[:data].to_json.html_safe %>,
+        visible: <%= layer[:visible].inspect.html_safe %>
       },
     <% end %>
       {}

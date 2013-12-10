@@ -10,13 +10,18 @@ class MapController < ApplicationController
 
     # Tilesets
     @tilesets = tiles.tilesets.map do |tileset|
-      [tileset.firstgid, "/tiles/" + tileset.image.split("/")[-1],
-       tileset.imagewidth, tileset.imageheight, tileset.properties]
+      {
+        firstgid: tileset.firstgid,
+        url: "/tiles/" + tileset.image.split("/")[-1],
+        image_width: tileset.imagewidth,
+        image_height: tileset.imageheight,
+        properties: tileset.properties,
+      }
     end
 
     @tile_layers = tiles.layers.map do |layer|
       data = layer.data.each_slice(layer.width).to_a
-      [layer.name, data]
+      { name: layer.name, data: data, visible: layer.visible }
     end
 
     # Old hardcoding of single terrain layer and tileset

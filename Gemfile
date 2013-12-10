@@ -13,8 +13,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # For parsing tmx/tsx files
-# TODO: use version 0.1.4 when it comes out.
-gem 'tmx', :git => "git@github.com:shawn42/tmx.git"
+# TODO: use release version 0.1.4 when it comes out.
+gem 'tmx', :git => "git@github.com:noahgibbs/tmx.git"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
