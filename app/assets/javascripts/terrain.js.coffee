@@ -30,7 +30,7 @@ class window.Terrain
     offset = 0
     for tileset in @tilesets
       tileset.cjs_frame_offset = offset
-      ts_size = (tileset.image_width / @tw) * (tileset.image_height / @th)
+      ts_size = parseInt(tileset.image_width / @tw) * parseInt(tileset.image_height / @th)
       offset += ts_size
 
   gid_to_tileset_and_id: (gid) ->
@@ -48,6 +48,8 @@ class window.Terrain
     @sprite_sheet = new createjs.SpriteSheet frames: { width: @tw, height: @th }, images: preloads
 
     for layer in @layers
+      continue unless layer.visible
+
       sprites = []
       layer.container = new createjs.Container
       @container.addChild layer.container
@@ -55,12 +57,13 @@ class window.Terrain
       for h in [0..(@h-1)]
         sprites[h] = []
         for w in [0..(@w-1)]
-          sprites[h][w] = new createjs.Sprite(@sprite_sheet)
-          sprites[h][w].setTransform(w * @tw, h * @th)
-          [tileset, id] = this.gid_to_tileset_and_id layer.data[h][w]
-          console.debug("Can't resolve", layer.data[h][w], layer.name, h, w) unless tileset?
-          sprites[h][w].gotoAndStop(tileset.cjs_frame_offset + id)
-          layer.container.addChild sprites[h][w]
+          unless layer.data[h][w] is 0
+            sprites[h][w] = new createjs.Sprite(@sprite_sheet)
+            sprites[h][w].setTransform(w * @tw, h * @th)
+            [tileset, id] = this.gid_to_tileset_and_id layer.data[h][w]
+            console.debug("Can't resolve", layer.data[h][w], layer.name, h, w) unless tileset?
+            sprites[h][w].gotoAndStop(tileset.cjs_frame_offset + id)
+            layer.container.addChild sprites[h][w]
 
     @stage.addChild(@container)
 
