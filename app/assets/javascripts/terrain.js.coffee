@@ -55,6 +55,7 @@ class window.Terrain
 
       sprites = []
       layer.container = new createjs.Container
+      layer.container.alpha = layer.opacity
       @container.addChild layer.container
 
       for h in [0..(@h-1)]

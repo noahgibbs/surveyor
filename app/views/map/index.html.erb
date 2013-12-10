@@ -18,7 +18,8 @@
       {
         name: <%= layer[:name].to_json.html_safe %>,
         data: <%= layer[:data].to_json.html_safe %>,
-        visible: <%= layer[:visible].inspect.html_safe %>
+        visible: <%= layer[:visible].to_json.html_safe %>,
+        opacity: <%= layer[:opacity].to_json %>
       },
     <% end %>
       {}
