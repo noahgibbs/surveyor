@@ -14,6 +14,9 @@ class window.Terrain
   constructor: (@w, @h, @tw, @th, @tilesets, @layers) ->
     terrains.push this
 
+    @w = 40 if @w > 40
+    @h = 40 if @h > 40
+
     # Tiled uses the value "0" to mean "no terrain"
     @tilesets.unshift firstgid: 0, image: "/tiles/empty32.png", image_width: 32, image_height: 32
 
