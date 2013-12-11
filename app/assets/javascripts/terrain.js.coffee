@@ -14,8 +14,8 @@ class window.Terrain
   constructor: (@w, @h, @tw, @th, @tilesets, @layers) ->
     terrains.push this
 
-    @w = 40 if @w > 40
-    @h = 40 if @h > 40
+    @w = 30 if @w > 30
+    @h = 30 if @h > 30
 
     # Tiled uses the value "0" to mean "no terrain"
     @tilesets.unshift firstgid: 0, image: "/tiles/empty32.png", image_width: 32, image_height: 32
@@ -52,6 +52,7 @@ class window.Terrain
 
     for layer in @layers
       continue unless layer.visible
+      continue if layer.name == "Collision"
 
       sprites = []
       layer.container = new createjs.Container
