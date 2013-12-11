@@ -1,7 +1,10 @@
 class MapController < ApplicationController
   def index
+    terrain_name = params[:terrain] || ""
+    terrain_name = "goldenfields_house1" unless terrain_name =~ /^[-a-zA-Z0-9_]+$/
+
     # This recursively loads things like tileset .tsx files
-    tiles = Tmx.load File.join(Rails.root, "terrains", "goldenfields_house1.tmx")
+    tiles = Tmx.load File.join(Rails.root, "terrains", "#{terrain_name}.tmx")
 
     @width_in_tiles = tiles.width
     @height_in_tiles = tiles.height
