@@ -26,9 +26,11 @@
   ];
   terrain_layers.pop();  // Remove final empty entry
 
-  window.terrain = new Terrain(<%= @width_in_tiles %>,
-    <%= @height_in_tiles %>, <%= @tile_width_in_pixels %>,
-    <%= @tile_height_in_pixels %>, terrain_tilesets, terrain_layers);
+  window.terrain = new Terrain(
+    <%= @width_in_tiles %>, <%= @height_in_tiles %>,
+    <%= @tile_width_in_pixels %>, <%= @tile_height_in_pixels %>,
+    <%= @viewport_width %>, <%= @viewport_height %>,
+    terrain_tilesets, terrain_layers);
 
   window.humanoids = [
     new Humanoid("skeleton1",
@@ -63,5 +65,13 @@
 
 <h1>Map View</h1>
 
-<canvas id="displayCanvas" width="<%= @width_in_tiles * @tile_width_in_pixels %>"
-        height="<%= @height_in_tiles * @tile_height_in_pixels %>"></canvas>
+<canvas id="displayCanvas" width="<%= [@width_in_tiles, @viewport_width].min * @tile_width_in_pixels %>"
+        height="<%= [@height_in_tiles, @viewport_height].min * @tile_height_in_pixels %>"></canvas>
+
+<h2> Terrains </h2>
+
+<ul>
+  <% @terrain_names.each do |terrain_name| %>
+    <li> <%= link_to(terrain_name, :action => :index, :terrain => terrain_name) %> </li>
+  <% end %>
+</ul>

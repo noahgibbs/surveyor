@@ -11,11 +11,11 @@
 terrains = []
 
 class window.Terrain
-  constructor: (@w, @h, @tw, @th, @tilesets, @layers) ->
+  constructor: (@w, @h, @tw, @th, @vieww, @viewh, @tilesets, @layers) ->
     terrains.push this
 
-    @w = 30 if @w > 30
-    @h = 30 if @h > 30
+    @scrollx = 0
+    @scrolly = 0
 
     # Tiled uses the value "0" to mean "no terrain"
     @tilesets.unshift firstgid: 0, image: "/tiles/empty32.png", image_width: 32, image_height: 32
@@ -59,9 +59,9 @@ class window.Terrain
       layer.container.alpha = layer.opacity
       @container.addChild layer.container
 
-      for h in [0..(@h-1)]
+      for h in [0..(Math.min(@h, @viewh)-1)]
         sprites[h] = []
-        for w in [0..(@w-1)]
+        for w in [0..(Math.min(@w, @vieww)-1)]
           unless layer.data[h][w] is 0
             sprites[h][w] = new createjs.Sprite(@sprite_sheet)
             sprites[h][w].setTransform(w * @tw, h * @th)
