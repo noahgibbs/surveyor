@@ -56,14 +56,43 @@ class window.Humanoid
     this.set_sprite_params()
 
   set_sprite_params: () ->
-    # Humanoid sprites are 64x64.  Terrain sprites are 32x32.
-    # Feet-points in a humanoid sprite are usually close to (32, 52).
-    # We adjust the humanoid's (32,52) to the center of the terrain
-    # sprite at (@x * 32 + 16, @y * 32 + 16).
-    @container.setTransform @x * 32 + 16 - 32, @y * 32 + 16 - 52
+    @container.setTransform @screen_x_for_terrain_x(@x), @screen_y_for_terrain_y(@y)
     for sprite in @sprite_stack
       sprite.framerate = 7
       sprite.gotoAndPlay "#{@action}_#{@direction}"
+
+  # Humanoid sprites are 64x64.  Terrain sprites are 32x32.
+  # Feet-points in a humanoid sprite are usually close to (32, 52).
+  # We adjust the humanoid's (32,52) to the center of the terrain
+  # sprite at (@x * 32 + 16, @y * 32 + 16).
+  screen_x_for_terrain_x: (x) -> x * 32 + 16 - 32
+  screen_y_for_terrain_y: (y) -> y * 32 + 16 - 52
+
+  animate_move_to: (x, y, anim = "walk") ->
+    delta_x = x - @x
+    delta_y = y - @y
+
+    if delta_y > delta_x
+      anim_dir = if delta_y > 0 then "down" else "up"
+    else
+      anim_dir = if delta_x > 0 then "right" else "left"
+
+    @direction = anim_dir
+    @action = anim
+
+  move_to: (x, y) ->
+    distance = Math.sqrt( (@x - x) * (@x - x) + (@y - y) * (@y - y) )
+    @animate_move_to(x, y)  # Pick action and direction
+    @set_sprite_params()  # Use new animation
+    new_x = @screen_x_for_terrain_x(x)
+    new_y = @screen_y_for_terrain_y(y)
+    createjs.Tween.get(@container)
+      .to({x: new_x, y: new_y}, distance * 800.0, createjs.Ease.linear)
+      .call (tween) =>  # on complete, set new @x and @y
+        @x = x
+        @y = y
+        @action = "stand"
+        @set_sprite_params()
 
 window.Humanoid.init_with_stage = (stage) ->
   for humanoid in window.humanoids
