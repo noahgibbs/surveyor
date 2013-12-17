@@ -39,8 +39,8 @@ class window.Humanoid
     @options = {} unless @options?
     @direction = @options.direction || "right"
     @action = @options.action || "stand"
-    @x = @options.x || 1
-    @y = @options.y || 1
+    @x = if @options.x? then @options.x else 1
+    @y = if @options.y? then @options.y else 1
     @animation_stack = @options.animation_stack || [@name]
     add_humanoid_animation(animation) for animation in @animation_stack
 
@@ -56,7 +56,11 @@ class window.Humanoid
     this.set_sprite_params()
 
   set_sprite_params: () ->
-    @container.setTransform @x, @y
+    # Humanoid sprites are 64x64.  Terrain sprites are 32x32.
+    # Feet-points in a humanoid sprite are usually close to (32, 52).
+    # We adjust the humanoid's (32,52) to the center of the terrain
+    # sprite at (@x * 32 + 16, @y * 32 + 16).
+    @container.setTransform @x * 32 + 16 - 32, @y * 32 + 16 - 52
     for sprite in @sprite_stack
       sprite.framerate = 7
       sprite.gotoAndPlay "#{@action}_#{@direction}"
