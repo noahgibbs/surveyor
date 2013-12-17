@@ -80,9 +80,9 @@ class window.Humanoid
     @direction = anim_dir
     @action = anim
 
-  move_to: (x, y) ->
+  move_to: (x, y, anim = "walk") ->
     distance = Math.sqrt( (@x - x) * (@x - x) + (@y - y) * (@y - y) )
-    @animate_move_to(x, y)  # Pick action and direction
+    @animate_move_to(x, y, anim)  # Pick action and direction
     @set_sprite_params()  # Use new animation
     new_x = @screen_x_for_terrain_x(x)
     new_y = @screen_y_for_terrain_y(y)

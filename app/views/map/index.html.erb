@@ -37,14 +37,14 @@
       {
         direction: "down",
         action: "walk",
-        x: 80, y:92,
+        x: 7, y:8,
         animation_stack: ["skeleton", "robe_male", "kettle_hat_male"]
       }),
     new Humanoid("skeleton2",
       {
-        direction: "left",
+        direction: "right",
         action: "slash",
-        x: 176, y:92,
+        x: 0, y:0,
         animation_stack: ["skeleton", "chain_armor_female", "plate_shoulder_pad_male", "leather_bracers_male"]
       })
   ]
@@ -55,6 +55,9 @@
   window.on_cjs_init = function() {
     // TODO: library should do this automatically
     Humanoid.init_with_stage(window.stage);
+
+    window.humanoids[1].move_to(5, 5)
+    window.humanoids[0].move_to(3, 2, "spellcast")
   }
 
   window.on_cjs_tick = function() {
