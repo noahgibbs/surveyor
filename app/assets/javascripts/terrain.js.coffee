@@ -94,16 +94,11 @@ class window.Terrain
   random_open_spot: () ->
     return [0,0] unless @collision_grid?
 
-    console.info "Got here [0.1]"
     for try_number in [0..20]
-      console.info "Got here [0.2#{try_number}]"
       x = window.Utils.int_random 0, @w - 1
       y = window.Utils.int_random 0, @h - 1
-      console.info "X: #{x} Y: #{y}"
-      console.info "Collision: #{@collision_grid[y][x]}"
       return [x, y] unless @collision_grid[y][x]
 
-    console.info "Got here [0.3]"
     alert "Can't find an open spot!"
     return [0, 0]
 
