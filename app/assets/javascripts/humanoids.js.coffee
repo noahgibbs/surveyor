@@ -72,13 +72,18 @@ class window.Humanoid
     delta_x = x - @x
     delta_y = y - @y
 
-    if delta_y > delta_x
+    if Math.abs(delta_y) > Math.abs(delta_x)
       anim_dir = if delta_y > 0 then "down" else "up"
     else
       anim_dir = if delta_x > 0 then "right" else "left"
 
     @direction = anim_dir
     @action = anim
+
+  jump_to: (x, y) ->
+    @x = x
+    @y = y
+    @set_sprite_params()
 
   move_to: (x, y, anim = "walk") ->
     distance = Math.sqrt( (@x - x) * (@x - x) + (@y - y) * (@y - y) )

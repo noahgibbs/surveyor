@@ -89,6 +89,24 @@ class window.Terrain
       @collision_grid = (false for item in row for row in @layers[0].data)
       console.info @collision_grid
 
+  is_spot_open: (x, y) -> @collision_grid[y][x]
+
+  random_open_spot: () ->
+    return [0,0] unless @collision_grid?
+
+    console.info "Got here [0.1]"
+    for try_number in [0..20]
+      console.info "Got here [0.2#{try_number}]"
+      x = window.Utils.int_random 0, @w - 1
+      y = window.Utils.int_random 0, @h - 1
+      console.info "X: #{x} Y: #{y}"
+      console.info "Collision: #{@collision_grid[y][x]}"
+      return [x, y] unless @collision_grid[y][x]
+
+    console.info "Got here [0.3]"
+    alert "Can't find an open spot!"
+    return [0, 0]
+
 window.Terrain.images_to_load = () ->
   images = []
   images = images.concat(terrain.images_to_load()) for terrain in terrains

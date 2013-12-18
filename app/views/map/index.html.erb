@@ -37,14 +37,14 @@
       {
         direction: "down",
         action: "walk",
-        x: 7, y:8,
+        x: 0, y: 0,
         animation_stack: ["skeleton", "robe_male", "kettle_hat_male"]
       }),
     new Humanoid("skeleton2",
       {
         direction: "right",
         action: "slash",
-        x: 0, y:0,
+        x: 0, y: 0,
         animation_stack: ["skeleton", "chain_armor_female", "plate_shoulder_pad_male", "leather_bracers_male"]
       })
   ]
@@ -53,6 +53,12 @@
   $(window.init_graphics);
 
   window.on_cjs_init = function() {
+    var spot1 = window.terrain.random_open_spot();
+    var spot2 = window.terrain.random_open_spot();
+
+    window.humanoids[0].jump_to(spot1[0], spot1[1]);
+    window.humanoids[1].jump_to(spot2[0], spot2[1]);
+
     window.humanoids[1].move_to(5, 5)
     window.humanoids[0].move_to(3, 2, "spellcast")
   }
