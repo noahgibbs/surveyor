@@ -53,8 +53,14 @@ class window.Terrain
 
     below_fringe = true
     for layer in @layers
+      if layer.name == "Collision"
+        @collision_grid = ((if square == 0 then false else true) for square in row for row in layer.data)
+        continue
+
+      # Skip invisible layers
       continue unless layer.visible
-      continue if layer.name == "Collision"
+
+      # Fringe-and-later layers are drawn over top of humanoid sprites
       below_fringe = false if layer.name == "Fringe"
 
       sprites = []
@@ -78,6 +84,10 @@ class window.Terrain
 
     @lower_external_container.addChild(@lower_internal_container)
     @upper_external_container.addChild(@upper_internal_container)
+
+    unless @collision_grid?
+      @collision_grid = (false for item in row for row in @layers[0].data)
+      console.info @collision_grid
 
 window.Terrain.images_to_load = () ->
   images = []
