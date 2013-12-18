@@ -44,9 +44,9 @@ class window.Humanoid
     @animation_stack = @options.animation_stack || [@name]
     add_humanoid_animation(animation) for animation in @animation_stack
 
-  init: (@stage) ->
+  init: (@outer_container) ->
     @container = new createjs.Container
-    @stage.addChild @container
+    @outer_container.addChild @container
 
     @sprite_stack = []
     for anim in @animation_stack
@@ -94,9 +94,9 @@ class window.Humanoid
         @action = "stand"
         @set_sprite_params()
 
-window.Humanoid.init_with_stage = (stage) ->
+window.Humanoid.init_with_container = (cont) ->
   for humanoid in window.humanoids
-    humanoid.init(stage)
+    humanoid.init(cont)
 
 # Get list of image URLs to preload
 window.Humanoid.images_to_load = () ->

@@ -53,9 +53,6 @@
   $(window.init_graphics);
 
   window.on_cjs_init = function() {
-    // TODO: library should do this automatically
-    Humanoid.init_with_stage(window.stage);
-
     window.humanoids[1].move_to(5, 5)
     window.humanoids[0].move_to(3, 2, "spellcast")
   }

@@ -20,7 +20,8 @@ class window.Terrain
     # Tiled uses the value "0" to mean "no terrain"
     @tilesets.unshift firstgid: 0, image: "/tiles/empty32.png", image_width: 32, image_height: 32
 
-    @container = new createjs.Container
+    @lower_internal_container = new createjs.Container
+    @upper_internal_container = new createjs.Container
 
     # CreateJS allows specifying sprites in a spritesheet only based on its own calculated offsets,
     # unless we manually specify every frame for every image.  So instead, we'll calculate how many
@@ -46,18 +47,23 @@ class window.Terrain
   images_to_load: () ->
     images = (tileset.image for tileset in @tilesets)
 
-  init_with_stage: (@stage) ->
+  init_with_containers: (@lower_external_container, @upper_external_container) ->
     preloads = (window.loader.getResult(tileset.image) for tileset in @tilesets)
     @sprite_sheet = new createjs.SpriteSheet frames: { width: @tw, height: @th }, images: preloads
 
+    below_fringe = true
     for layer in @layers
       continue unless layer.visible
       continue if layer.name == "Collision"
+      below_fringe = false if layer.name == "Fringe"
 
       sprites = []
       layer.container = new createjs.Container
       layer.container.alpha = layer.opacity
-      @container.addChild layer.container
+      if below_fringe
+        @lower_internal_container.addChild layer.container
+      else
+        @upper_internal_container.addChild layer.container
 
       for h in [0..(Math.min(@h, @viewh)-1)]
         sprites[h] = []
@@ -70,12 +76,13 @@ class window.Terrain
             sprites[h][w].gotoAndStop(tileset.cjs_frame_offset + id)
             layer.container.addChild sprites[h][w]
 
-    @stage.addChild(@container)
+    @lower_external_container.addChild(@lower_internal_container)
+    @upper_external_container.addChild(@upper_internal_container)
 
 window.Terrain.images_to_load = () ->
   images = []
   images = images.concat(terrain.images_to_load()) for terrain in terrains
   images
 
-window.Terrain.init_with_stage = (stage) ->
-  terrain.init_with_stage(stage) for terrain in terrains
+window.Terrain.init_with_containers = (lower_cont, upper_cont) ->
+  terrain.init_with_containers(lower_cont, upper_cont) for terrain in terrains

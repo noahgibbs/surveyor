@@ -2,10 +2,11 @@
 #
 # init_graphics - a callback to set up createjs stuff
 # stage - a createjs stage
+# overlay_container - a container for stuff above the humanoid sprite layer
 # loader - a createjs image preload queue
 # terrain_tilesheet - a tilesheet for the terrain layer
 #
-# Variables expected in window, often optional:
+# Variables expected in window, sometimes optional:
 #
 # humanoids - see humanoids.js.coffee
 # Variables for terrains, see tilesheets.js.coffee
@@ -14,6 +15,7 @@
 
 window.init_graphics = () ->
   window.stage = new createjs.Stage "displayCanvas"
+  window.overlay_container = new createjs.Container
   stage = window.stage
 
   images = []
@@ -34,9 +36,13 @@ handleSpritesLoaded = () ->
   $("#loader")[0].className = ""
 
   Humanoid.images_loaded()
-  Terrain.init_with_stage(window.stage)
+  Terrain.init_with_containers(window.stage, window.overlay_container)
+  Humanoid.init_with_container(window.stage);
 
   window.on_cjs_init() if window.on_cjs_init
+
+  # Make sure overlay container is displayed on top
+  window.stage.addChild(window.overlay_container)
 
   createjs.Ticker.timingMode = createjs.Ticker.RAF
   createjs.Ticker.addEventListener("tick", tick)
