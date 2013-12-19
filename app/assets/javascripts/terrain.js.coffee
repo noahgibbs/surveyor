@@ -109,3 +109,6 @@ window.Terrain.images_to_load = () ->
 
 window.Terrain.init_with_containers = (lower_cont, upper_cont) ->
   terrain.init_with_containers(lower_cont, upper_cont) for terrain in terrains
+
+window.Terrain.clear_terrains = () ->
+  terrains = []

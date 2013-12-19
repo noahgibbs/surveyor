@@ -14,7 +14,17 @@
 # on_cjs_tick - a callback for each createjs tick on the stage
 
 window.init_graphics = () ->
+  # Is this needed?
+  $("#loader")[0].className = "loader"
+
+  # Help clear out the old stage and keep it from
+  # consuming resources.
+  if window.stage
+    window.stage.removeAllChildren()
+
+  # New displayCanvas, new stage
   window.stage = new createjs.Stage "displayCanvas"
+
   window.overlay_container = new createjs.Container
   stage = window.stage
 
@@ -45,6 +55,7 @@ handleSpritesLoaded = () ->
   window.stage.addChild(window.overlay_container)
 
   createjs.Ticker.timingMode = createjs.Ticker.RAF
+  createjs.Ticker.removeEventListener("tick", tick);  # If present
   createjs.Ticker.addEventListener("tick", tick)
 
 tick = (event) ->

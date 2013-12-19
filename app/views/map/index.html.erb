@@ -26,6 +26,7 @@
   ];
   terrain_layers.pop();  // Remove final empty entry
 
+  Terrain.clear_terrains();
   window.terrain = new Terrain(
     <%= @width_in_tiles %>, <%= @height_in_tiles %>,
     <%= @tile_width_in_pixels %>, <%= @tile_height_in_pixels %>,
@@ -49,7 +50,14 @@
       })
   ]
 
-  // Call init_graphics on page loaded
+  // Call init_graphics on page load and page change
+  if(!window.page_change_bound) {
+    $(document).bind('page:change', function() {
+      console.info("Page update!");
+      window.init_graphics();
+    });
+    window.page_change_bound = true;
+  }
   $(window.init_graphics);
 
   window.on_cjs_init = function() {
