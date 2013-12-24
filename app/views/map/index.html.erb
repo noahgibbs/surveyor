@@ -53,7 +53,6 @@
   // Call init_graphics on page load and page change
   if(!window.page_change_bound) {
     $(document).bind('page:change', function() {
-      console.info("Page update!");
       window.init_graphics();
     });
     window.page_change_bound = true;
