@@ -14,7 +14,7 @@ gem 'turbolinks'
 
 # For parsing tmx/tsx files
 # TODO: use release version 0.1.4 when it comes out.
-gem 'tmx', :git => "git@github.com:noahgibbs/tmx.git"
+gem 'tmx'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
