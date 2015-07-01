@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="79" height="67" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="license" value="CC BY-SA 3.0"/>
+  <property name="manaplus version" value="2"/>
+  <property name="minimap" value="graphics/minimaps/001-2-2.png"/>
+  <property name="music" value="bartk - in the forest of the birches.ogg"/>
+  <property name="name" value="Moon's House First Floor"/>
+ </properties>
+ <tileset firstgid="1" name="Indoor" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/artis-indoor.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="Indoor Fringe" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/artis-indoor-fringe.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="513" name="Indor x2" tilewidth="32" tileheight="64">
+  <image source="../graphics/tilesets/artis-indoor-x2.png" width="512" height="64"/>
+ </tileset>
+ <tileset firstgid="529" name="Indoor x3" tilewidth="32" tileheight="96">
+  <image source="../graphics/tilesets/artis-indoor-x3.png" width="512" height="288"/>
+ </tileset>
+ <tileset firstgid="577" name="Indoor x2 x4" tilewidth="64" tileheight="128">
+  <image source="../graphics/tilesets/artis-indoor-x4x2.png" width="512" height="128"/>
+ </tileset>
+ <tileset firstgid="585" name="Indoor x4" tilewidth="32" tileheight="128">
+  <image source="../graphics/tilesets/artis-indoor-x4.png" width="512" height="128"/>
+ </tileset>
+ <tileset firstgid="601" name="Box" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/box.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="637" name="Box x1 x2" tilewidth="32" tileheight="64">
+  <image source="../graphics/tilesets/box-x1x2.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="645" source="../graphics/tilesets/candle.tsx"/>
+ <tileset firstgid="657" name="Accessory" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/artis-accessory.png" width="512" height="256"/>
+ </tileset>
+ <tileset firstgid="785" name="Sunlight" tilewidth="32" tileheight="160">
+  <image source="../graphics/tilesets/ship-sunlight-x1x5.png" width="128" height="160"/>
+ </tileset>
+ <tileset firstgid="789" name="Ground" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ground.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1045" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/collision.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="1051" name="Level Height" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/level-number.png" width="512" height="32"/>
+ </tileset>
+ <layer name="Ground" width="79" height="67">
+  <data encoding="base64" compression="zlib">
+   eJzt1k9Kw0AUx/EEl/4BhW6FHiEn0K3YXMIT5EyCR/Am2oLLLtojuDUD8+jz8SYUO6Fj8l18SJrMvPJ+nTTTVVXVAQAAAAAAAAAAAAAwY5e9m4SrI8f9ZY4e919d9257dbS9OJw/xB5DBo/x2ld/v1Hj7TxvjswLxyZ+330BvefIblkd+lqoflcxi5BBG6/p+2/qfBHn2zmNM285oey2CauojfS9Xe89HofmbBKmkF03kJ1kETJYR0Njd5HMSeW2KaDnMbL7MHYqN8kmldvajLV5vdTTzu7TsNnJ+V194OW7drKb47qTLPTRW2dzzE7nZ9dd5+Rj15jNTWrOIbfA7tfCHkz2F6n1ZtejJvs4W7cuoNecZO+m97zL6vc+r43XhrJr1FhbozH1zt1zzuxS60rvOYaeU/ls9zRe3SllZ/u3mXjPZipD773hzTt3z7lIX/odMZSVl0kq00C/t2XMuXvOpY392B7ts3VMfl5d+5tM6ZlN/T+d2uNYdUvy3Ht1PBVatyT73reiP+equ89YtyReZnJ+al0vv30BPY+ZX67+cq/lEuXOzKs/xTUHAAAAAAAAAACAcfwAxuxuDg==
+  </data>
+ </layer>
+ <layer name="Ground 2" width="79" height="67">
+  <data encoding="base64" compression="zlib">
+   eJzt1k1Kw0AYxvFJoIp4AD820nbpAXTr1l2wimJdeQL1Bh5B1BOIB/AM6l49gVQPoL2Az5AR03GSYCk4Tf8/eBgmM3lpXhI6xgAAAAAAAAAAAAAAAExGq2Z9zo2XypVy7V0PWUzq6zbBbs36nrKiXty4+a2ykJTfN6+1JWXfzZfdvCmyktTtK7s2Tu1p96Q8u5jCaB0p74X5vfKgPLp5KzXmTWPfu+dbpnftXNlRNtPJ/u7/1NazdJRu4JkGJu/BhtY+zE//esnoaPs2VLbTvH+vXp0t7VtVju333aBvtsrAm9v+fSprev71JB/tfOjt83t3on2nytmM9M3ye2e19fydQrqBfvi9w2+9GXqPgJiUncMyb09djb/UawJ7Bime7WxeCut9M3pWq+LvrarbFP7/Yuj/Naa6MaF347sIJOa6mH6Hyl0gB5HWBQAAAAAAAAAAAADE5Qsc2kxU
+  </data>
+ </layer>
+ <layer name="Fringe" width="79" height="67">
+  <data encoding="base64" compression="zlib">
+   eJzt1kFOwkAYhuGpJO6IqXWjJK7dYGKqC01cAIFwAJa6gBP0BCYKO48D8SDeoPEEwAX4SEosE1qgEYXxfZIv7fzTaTo/IRljAAAAAAAAAAAAAAAAfkZzzXyr4Lp2gW+BMWXvr79gd+6Otl8zSq4fyTWrPycr6lcO9vJcPbxQGsqnxk+puQft91L1IKfPx9ZcpPFLUnvU+vcCv9GhiBW/ZMypEihnpeX+mRXzWfVna9295/Z/N97gmY7276d6UNF96HBPAADfIuv8MMw4T9yoXlWuldvUfWg939W4p3w5fC6Z62t/A+XV2mfNGr/l9GFxNsxTd7yPwG8aK5NUpnv+XgAAAAAAAAAAAAAA8L/NALv3G90=
+  </data>
+ </layer>
+ <layer name="Over" width="79" height="67">
+  <data encoding="base64" compression="zlib">
+   eJzt1U1uwjAQhmEHluVHXRcQm266KYKqWxBwAuAguQ1H6BF6BHosxhIWJqKexIBCrPeRPiEUZ0JGYsYYAAAAAAAAAAAAAACA+xpldf8CANd0a3ruqKbn3lNM7zKZhS0v7YjZmELv3iSTwPVP5XrMPfb6oGLNZ2X7N/wnA6P31+f6otVMxYukF0hHMpZ8lEi/ZL0U2PdcKGfmpzOvyrnMO6vVS6F/7Nl49C5eaA/Yue/me5Vdod2Typ4NzTs3l3Jz3pu/5vrufDfnHZqXrNt02n/W/2/ZnvydPov5LnyvUrepHvWO9I7ehWi7InamP6rus7HvOZXMJF+Svbmc+7fUdfvFr59K35ylZCVZS37M5dyP5e4/FOqnZiPZSnYNrQ8AAAAAAAAAAIC0HAEnySBY
+  </data>
+ </layer>
+ <layer name="Collision" width="79" height="67">
+  <data encoding="base64" compression="zlib">
+   eJzt00EKwyAQBdAscoaA979ot6m0jRGtY3wDj0gII/OZHPu2HQAAAAAAAAAAwBLOVfpt/q60f8kdM/lVJRlf5XI365nUVNrfn1d1vi8FmHlEdt/mvlujZx61d7Irm70mm9KeK1ltn3pmmJ9Xd5VFzc49Od98h/5Ro2duvWuya5dfTcY1fWeXPojcN4pe/1avvpHIrv2ckftG03uup+YGAAAAAABAey9YDf+Y
+  </data>
+ </layer>
+ <objectgroup name="Object">
+  <object name="To Artis Left" type="warp" x="864" y="1440" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="001-1"/>
+    <property name="dest_x" value="0"/>
+    <property name="dest_y" value="0"/>
+   </properties>
+  </object>
+  <object name="To Artis Right" type="warp" x="1632.25" y="1440.25" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="001-1"/>
+    <property name="dest_x" value="0"/>
+    <property name="dest_y" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="Heights" width="79" height="67">
+  <data encoding="base64" compression="zlib">
+   eJzt1kEKgzAQQFEX3qK9/zmLi2KZWpxGK83kPcjCIJH5ZOE0AQAAAAAAAAAAo7jP68q+G/ey52e+0ZPnPHHGrUbf7MfzPz33bKvZ2St+r4ojHc48o0faHbM3Y0uXEbpljXaffuG1k2arvRYtd65y33iHrv5n6dmVzaq1W2Tma2lSvdviNr+vfz4XAAAAAAAAACp4AMzvHNc=
+  </data>
+ </layer>
+</map>

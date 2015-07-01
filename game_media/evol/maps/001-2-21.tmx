@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="52" height="53" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="license" value="CC BY-SA 3.0"/>
+  <property name="manaplus version" value="1"/>
+  <property name="minimap" value="graphics/minimaps/000-2-231.png"/>
+  <property name="music" value="bartk - in the forest of the birches.ogg"/>
+  <property name="name" value="La Johanne, First Deck"/>
+ </properties>
+ <tileset firstgid="1" name="Ship Indoor" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ship-indoor.png" width="256" height="512"/>
+ </tileset>
+ <tileset firstgid="129" name="Ship Fringe" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ship-indoor-fringe.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="385" source="../graphics/tilesets/candle.tsx"/>
+ <tileset firstgid="397" name="Box" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/box.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="433" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/collision.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="439" name="Box x1x2" tilewidth="32" tileheight="64">
+  <image source="../graphics/tilesets/box-x1x2.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="447" name="Shadow" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/shadow.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="511" name="Sunlight x1x5" tilewidth="32" tileheight="160">
+  <image source="../graphics/tilesets/ship-sunlight-x1x5.png" width="128" height="160"/>
+ </tileset>
+ <tileset firstgid="515" name="Indoor" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/artis-indoor.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Ground" width="52" height="53">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3TwQqCQBCA4bGI6GCQIFHgg223pW556v0PTbjRIK5hEbvGf/gYvc3PqBMRByR0W7yk3oWe/+8BAAAAgF9YBUtVqXWYO7VVdQY7ftNTm579DHvKoCpEjjob6eYhPDcZ7DjFVbXKm+nN+0MRbujMzJXdfajF9pxm0NNGPLvOaiPdN+nDTL3z2G3s/pfInYZulnr3dz39f6jfNceeflfsNrn2uEjPmNT7Tuma8g4AAAAAAIDP3AHOmkMxECsAAA==
+  </data>
+ </layer>
+ <layer name="Ground 2" width="52" height="53">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3RMQrCQBCF4R1zAhEPYLyJR7CzjRewtJQcwdpGLKw9goVH8AzamU5LHxgILJpiFTPF/8FjlywDb0gIAAAAAAAAQGNiIZjSUzJlG72fOmmVbqod+va6D3TudM6teT930ipdoe4jJVfG9T6f5H9r9Rt77XPQWUYZWuuYG7M3347KOsqm3qdomfPgqp6LhLmL0/9VqdcyYe7mdJ+Heq0S5u5O9wEAAAAAAAC+9QSzGOeMECsAAA==
+  </data>
+ </layer>
+ <layer name="Fringe" width="52" height="53">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3RywmAQAwE0CQ12KCl2NV25wc8elRWwnsQ5jpDIgAAAACgtyUjtpzd4htddo17x35lReR5VVMrvWLN5xxN/gYAAAAA8BcHMyMwMBArAAA=
+  </data>
+ </layer>
+ <layer name="Over" width="52" height="53">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3TTQqCUBSG4dNuGjq3nJhtIVpArkAQ3LHgJHAiOOgGBeJfXkffjfeBA15R8IWjGQAAAAAAUHXfMcre3xe7STbMycLoOW989mrh9hSH6b1vj/L+LfVkMz03098/n30bU9y/f+zJd777MM2e0k0z87+sqd3zlen2tJ49T/Ge3rOnE+5J3WSfOQ6uf50vptkznMjzrNYDAAAAAAAQihdyzEeQECsAAA==
+  </data>
+ </layer>
+ <layer name="Collision" width="52" height="53">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3PwQnAIBAEQO2/G+H6y8tHCAQJwqmZhUEOfOy2WkoDAAAAALYQC3SYqWf0b3bf0T09UZ/vl+2r7BlJdueZW07clN35j3ui3ju/3dmdAQAAAHZ2AYo51aAQKwAA
+  </data>
+ </layer>
+ <objectgroup name="Object">
+  <object name="ToArtis" type="warp" x="608" y="896" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="001-1"/>
+    <property name="dest_x" value="4512"/>
+    <property name="dest_y" value="2208"/>
+   </properties>
+  </object>
+  <object name="To Nard's Room" type="warp" x="1056" y="896" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="000-2-24"/>
+    <property name="dest_x" value="640"/>
+    <property name="dest_y" value="864"/>
+   </properties>
+  </object>
+  <object name="To Second Deck" type="warp" x="992" y="800" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="000-2-232"/>
+    <property name="dest_x" value="1952"/>
+    <property name="dest_y" value="928"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

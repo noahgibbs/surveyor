@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="55" height="55" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="actorsfix" value="1"/>
+  <property name="license" value="CC BY-SA 3.0"/>
+  <property name="manaplus version" value="1"/>
+  <property name="minimap" value="graphics/minimaps/000-0-0.png"/>
+  <property name="music" value="bartk - in the forest of the birches.ogg"/>
+  <property name="name" value="La Johanne, First Deck (Sailor's room)"/>
+ </properties>
+ <tileset firstgid="1" name="Ship Indoor" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ship-indoor.png" width="256" height="512"/>
+ </tileset>
+ <tileset firstgid="129" name="Ship Fringe" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ship-indoor-fringe.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="385" name="Shadow" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/shadow.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="449" name="Box" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/box.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="485" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/collision.png" width="96" height="64"/>
+ </tileset>
+ <layer name="Ground" width="55" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3VvwqDMBCA8SyOHUQcfZROmg59A8dOdvB98gh5Ta9wpaFUBIt/cnzDD8JN9xFIeudcDwAAAAAAgF08Zhy9F220WWy7ivuC2wn2XNtW611VYhBPUeqsNtRWKCttjXYEcVFBZ03mba+GUUT3eUtiMs+9LTUm52CsLRUzbmuF1w7/5T3rTrDnP37911b+cAAAAAAAAGBrEyddJYRELwAA
+  </data>
+ </layer>
+ <layer name="Fringe" width="55" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UMQrCQBBG4RVPIZZaWKSw8CaeSBEjYqUiIlYiwRNEj+cfmCYYYYvFZdf3wSPDVDtNnAMAAAAAAMCvLHrd5aC5Y6uWaqV2md22VwfrmNltF3VTd3XN6LZ/MPbcpahQpdqotc1F1BeFMVAzm8/qZHOzG0Z5UTh9/Tsqmx+uPZdxnhTMXLfV+j7Vy7Xn1I2+/POr7nVyJp67FE09dwAAAAAAAAA+vQEgUhRbRC8AAA==
+  </data>
+ </layer>
+ <layer name="Over" width="55" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3TwQnCQBRF0Vi6IiLiSiWIuApWYA+WoB3Yhy+QlcxKNMHhHLgwmdX/hGkaAAAAAMYyn5WrQb/HJi3SMm0r222X9kOHynY7pS5d0rmi3fhft7Qq3K/HHuQH7qlNXX/OW3sM7+2YntON9VXXt+/Sv6xFO/UAAAAAAAB85AW8zI7MRC8AAA==
+  </data>
+ </layer>
+ <layer name="Shadow" width="55" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UMQuCUBiGUf3pVkuaQ0RDkZN/tC9QkHDrEh+XM5z9fZena5umAwAAAOAv+nAIx8UpXBLsKuEcbl/GBLtKuO58uyfYVcJj59uUYBd8ejm09TRya+1lLY3cWptSY0eeYQ6vBFsAAAAAAPjNG8y/rSVELwAA
+  </data>
+ </layer>
+ <layer name="Shadow 2" width="55" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3PoQqAQBRE0be/rhZFg4jB4L/6gkk2isJyDkyfGwEAAADAV6YS0eX6e0NuLn+/eseYHdtjSyNta6Vtb6TtqLSdjbQBAAAAAABAzQWaz0+xRC8AAA==
+  </data>
+ </layer>
+ <layer name="Collision" width="55" height="55">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OsQkAAAjAMP3/T+8QH3ASXFLI3sqIAgAAAAAAODB9PwAAAAAAwKYBAf84MkQvAAA=
+  </data>
+ </layer>
+</map>

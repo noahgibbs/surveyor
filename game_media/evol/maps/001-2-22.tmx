@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="93" height="59" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="actorsfix" value="1"/>
+  <property name="license" value="CC BY-SA 3.0"/>
+  <property name="manaplus version" value="1"/>
+  <property name="minimap" value="graphics/minimaps/000-2-22.png"/>
+  <property name="music" value="bartk - in the forest of the birches.ogg"/>
+  <property name="name" value="La Johanne, Second Deck"/>
+ </properties>
+ <tileset firstgid="1" name="Ship Indoor" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ship-indoor.png" width="256" height="512"/>
+ </tileset>
+ <tileset firstgid="129" name="Ship Fringe" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/ship-indoor-fringe.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="385" source="../graphics/tilesets/candle.tsx"/>
+ <tileset firstgid="397" name="Box" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/box.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="433" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/collision.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="439" name="Ship Indoor x2x4" tilewidth="64" tileheight="128">
+  <image source="../graphics/tilesets/ship-indoor-x2x4.png" width="64" height="128"/>
+ </tileset>
+ <tileset firstgid="440" name="Box x1x2" tilewidth="32" tileheight="64">
+  <image source="../graphics/tilesets/box-x1x2.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="448" name="Sunlight x1x5" tilewidth="32" tileheight="160">
+  <image source="../graphics/tilesets/ship-sunlight-x1x5.png" width="128" height="160"/>
+ </tileset>
+ <tileset firstgid="452" name="Indoor" tilewidth="32" tileheight="32">
+  <image source="../graphics/tilesets/artis-indoor.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Ground" width="93" height="59" opacity="0.99">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2YwU4CMRCGuxIxxHBAhATRg0fj0aOGB/AJxFuDJ9g30Id3m7TZ2WHa7S4kpfAfvqCzy1C+zk5b1kqpNQAAgIvg7aom9VguBTiHcwAAAAAAAAAAAAAAAOjLe8WqhY8TGGdOtDn9rbi2DCpmloLE/zAnDdpqVAsejdsbG9MRzl2OG5ZjRnK0jWN1Aq6Ohfn+Q8HXkPnizqmvseWuaOLiMTmkcfCxpHbVFalHOOdtNfpkGVmHtySmCdy5iZWROaRx8LGkdtjV95eS68bVInUwUs0aLS078vcP803vo64lSuFvaRx8LKk9dmWq9uvm3uNB+n/jceXzXQr3+N4bS2qHfZy7ujG1NLbOuR9fnfp8h9zG1Pc5O18KTh9V3Xe5C9o7PgPE+jr0/Tk65/XrnNK1TqrZiblH1X3JxMw6N7dxX90WNjYgOeY2/qyaa+WU5fE9A6kd9nEufR++v+D3+JzPbNz4cmstX4e1vcZzvAjOpXXZjT1H37zOqdOQc/O6qHggHrfErYkv1X498lw8B58f3vdyrWsOf3bdPkTq59JaJ+1LfOtjTLzt887BuW9fQp2Hvn9o3x17X+w8SM5zOxOFnPu89d1DH+qZUljX3xk7l5Cec36Nnsm1ap6tYv3RHK+eHLx/uTOoVnmeQ0PPPt8vcO/0TK5V80zu5sC8TlV9xp2wa205YtaD1A4PqfOu/da3dtLfr8zrUtW/jSzYNcfOk8OwbRlPaod9nIf6B2UTmBcX23WYJ9/zFdPj6eekdngsYte7LnuTUN/Skddy7ytdnZ8iqT2d0ryY66G+VUbmAMebEzgFAAAAAAAAAAAAAAAAAPLhHy0laeC8VQAA
+  </data>
+ </layer>
+ <layer name="Ground 2" width="93" height="59">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2YS24TQRCGu4kcvEJYTpCyQXLYWWziOFKuETkXMD4COUPCQ4IdOBApDwny2hOHrH2ELALr3CCwTpWmSm6X2wwTxiK2/0/6NT0143LP3+1uTzkHAAAAAAAAAAAAAAAAAAAAAAAAAOaJd64o7cekR9Lm2K//06WJQD19GrlWIM896YHRDOl35H7NUYxcAwlbpFcmtilxZoe8XfNJ+0b0ks4bvnc/+/+ajm9Eb0ndDH2Y9en3TBIfSW3StZzz8YPEFfZ8jrQu3qwbz7m9TcdPos+ky1F3/B4wnzJXvtL195F7DklH9l6JKxX63KLRsyBXmdrHdDwRnZp8uz75fmXb9/q0TzoY03nOe12a7zF0nod8I51lyMH+62dYnYx96Iyp53vSb55D72Tf+xti83xUjPOctrC/O+ZZSnJenpBnvG+UIutsRY6NDJ4vRmIFUpU0Q5oXOYkV7tjfSYA9bxlvm3S+Yfa6NKpD4jXXvwdqzP62polS5NlXKLaaMU8th74s5ZBjHKiYNUXXmZDmFM/JUWD9bAXvjryHwu/8sWstU/GD7y4gP778g69ab+H6yHOJhfWWLDmUboYcL9z07cX6Hsr1kbpL6gNhvSUcC/ZVveT2Q9+fg2s1y5LL1mxAj7R6y4JLxkJ9VS/rkRzheNiaDegRq4/Yeov6d2TaunZoDh2PdiQHGOSc9J10YeKNoH7FvoZtu3aE4wHSuSL9IP008WH/e2JrRzgeIH+wdgAAAAAAAAAAAAAAAAAAAPyZW16IIQS8VQAA
+  </data>
+ </layer>
+ <layer name="Fringe" width="93" height="59">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3YvQnCQBgG4ETU3sIRHEBwBB3IEQQRJxBLG2ewdQlHcAS19fxpDKco5CIhzwNHyBXhy5svl3BZBgAAAAAAAADcnP9dAHft/N8VNMO0kPMknG9kX5lx/sicLDsVjqTVefZdNxwvCa4/zF9HmbY1fGf6H2re1/B+6uD2H9GKfONIZ/Am35nckxnJtnKxfi6uNaTXC5nPS8595zkCX3q3b9j9YR2x91i+RWRuWXkVzXEIYxWZX4dxrLiWpov1PmnFeh8AAAAAAABolit6tngWvFUAAA==
+  </data>
+ </layer>
+ <layer name="Over" width="93" height="59">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2Yy0rDQBSGJ5ZuFdGuBS/gQsGFbryBaAVvKFgV9xbdWzfq3ifxPbw9gu/SrefgDI5hLqdtWjvm/+AnZG6Z/DkzOYlSAAAAAAAAAAAAAAAAAAAAAAAAAGDq2WCuczmYy/QNnv+aoN1DpH6PdBbxfC8yxqNgHsy6sN2wwp5vCNrF/OL6ZhaOdW4zGamXcC9sN8zEYpiReH7XY5yXyfNVQRv24ylSz7yQ76+kN9J79ruM27RKFOfSPcSHz1Pbz0GMwaTmue89N0LlHyocoyHOSfsRHQX6XynZWuGy1Dxv6ntgjysd5HankfoGqUqaJlVINa1Ml1UjY+zrMVwck+qkOX3cEc/6bzGe2+85EztFMFHMME521ff8F/Uxlfy81/38LzGer6h0/GZsz82ekmXfe0woZx4GjOcpxTgjifPPQUykCy5Im5ZS+Q7tdW85UOGc5LCPY/AyNO9nJrW8pVs4j+P75pxklDRLGlM/fkhzRTMG950hTVlj/Nf8vFvyfiw46jk35GfBOcw16YY0rstquk3D8+5oO67hIyXPt0knjrotQf+8H8uO+ran74LVxsVzFq7Pk5Lnxve61rw+3gr6F/F/qoz/uC5zWlLF/suNfdeW0XMXduybuLclXQtFxHnLcV3XeSrf/j5cce8q8z2XTvYn46lvjJ3AXPLn/53QvceeicvTsvtZBNK1Ak8BAAAAAAAAAAAAAAAAgDT4At6ZG8S8VQAA
+  </data>
+ </layer>
+ <layer name="Collision" width="93" height="59">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3YWQ6DMAxFUdj/bpDYX8UHkms5Ls7QhORaOj9pS5Nndzz2bTsAAAAAAAAAAAAAAAAANHFVzm2ruuo01s9AXjUzv2vmfv2qyDXO/VvONUr2MSq9fznn8nzROa/VtxlzT52hZV6rZy7P6PUiMufW9VJrq2Uu32Ovkp+dJeeU983NyXvut+b95FxPSmfQsnrnVTN3vXbPv34dlORUo3pnVcp7X7FuH6F6Z1ZrxlNn0usj9MB7bb5Fybm980evkbO33tm1zlvOuXzskVjzelFzf70z/MeM63y9HKxcIjlFnutN7tIz/Ou3f05PUn1Yac5zz6p7lfr/qjSr1TIvnfOamVvfaWfLPNIXK4snM9p7/zOyeqL7AgAAAAAAAAAAxvcBEcW5ALxVAAA=
+  </data>
+ </layer>
+ <objectgroup name="Object">
+  <object name="To Ship's Hold" type="warp" x="2304" y="1088" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="001-2-23"/>
+    <property name="dest_x" value="1536"/>
+    <property name="dest_y" value="896"/>
+   </properties>
+  </object>
+  <object name="To First Deck" type="warp" x="2304" y="960" width="32" height="32">
+   <properties>
+    <property name="dest_map" value="001-2-21"/>
+    <property name="dest_x" value="960"/>
+    <property name="dest_y" value="832"/>
+   </properties>
+  </object>
+  <object name="Piou" type="spawn" x="992" y="736" width="1376" height="640">
+   <properties>
+    <property name="eA_death" value="20000"/>
+    <property name="eA_spawn" value="30000"/>
+    <property name="max_beings" value="3"/>
+    <property name="monster_id" value="1002"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
