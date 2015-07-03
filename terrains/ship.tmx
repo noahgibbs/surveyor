@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="23" tilewidth="32" tileheight="32" nextobjectid="31">
+ <properties>
+  <property name="license" value="CC BY-SA 3.0"/>
+  <property name="manaplus version" value="2"/>
+  <property name="minimap" value="graphics/minimaps/000-1.png"/>
+  <property name="music" value="bartk - the adventure begins.ogg"/>
+  <property name="name" value="Desert Island"/>
+  <property name="overlay0image" value="graphics/images/ambient/cloud.png"/>
+  <property name="overlay0parallax" value="1.0"/>
+  <property name="overlay0scrollX" value="0.2"/>
+  <property name="overlay0scrollY" value="0.1"/>
+ </properties>
+ <tileset firstgid="1" source="../game_media/evol/graphics/tilesets/water-calm.tsx"/>
+ <tileset firstgid="241" name="Ship Base" tilewidth="32" tileheight="32">
+  <image source="../game_media/evol/graphics/tilesets/ship-base.png" width="704" height="320"/>
+ </tileset>
+ <tileset firstgid="461" name="Ship Mast" tilewidth="32" tileheight="32">
+  <image source="../game_media/evol/graphics/tilesets/ship-mast.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="717" name="Collision" tilewidth="32" tileheight="32">
+  <image source="../game_media/evol/graphics/tilesets/collision.png" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="723" name="Ground" tilewidth="32" tileheight="32">
+  <image source="../game_media/evol/graphics/tilesets/ground.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="979" name="Tree x3x3" tilewidth="96" tileheight="96">
+  <image source="../game_media/evol/graphics/tilesets/tree-x3x3.png" width="96" height="96"/>
+ </tileset>
+ <tileset firstgid="980" name="Tree x3x4" tilewidth="96" tileheight="128">
+  <image source="../game_media/evol/graphics/tilesets/tree-x3x4.png" width="480" height="256"/>
+ </tileset>
+ <tileset firstgid="990" source="../game_media/evol/graphics/tilesets/accessory.tsx"/>
+ <tileset firstgid="1022" name="Box" tilewidth="32" tileheight="32">
+  <image source="../game_media/evol/graphics/tilesets/box.png" width="192" height="192"/>
+ </tileset>
+ <tileset firstgid="1058" name="Box x1x2" tilewidth="32" tileheight="64">
+  <image source="../game_media/evol/graphics/tilesets/box-x1x2.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="1066" name="Tree x4x5" tilewidth="128" tileheight="160">
+  <image source="../game_media/evol/graphics/tilesets/tree-x4x5.png" width="128" height="160"/>
+ </tileset>
+ <tileset firstgid="1067" name="Heights Number" tilewidth="32" tileheight="32">
+  <image source="../game_media/evol/graphics/tilesets/level-number.png" width="512" height="32"/>
+ </tileset>
+ <layer name="Ground" width="32" height="23">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3Wy04CMRgF4L/4HkhMlARh6cJLAiuWQjD4CGz0CQyjGVZG7iu5uXKLlxfAB9Co8Y08jW2o/3RwIiRlMYsvJNNOz2kzE6ZFRH0423Cj7TA7zo/zXed7yG847HBNbs8gzl+//KQg2oSUsiWC9+2IoLQixzP43YUs5Cz3a7cUfAf2xG9l2IdjZRtqcACHcMTkoSCC60hF1uWLnYFPP/NeE0RviXl+ybJWHTyowImhCqch+ZrOf2H5XbLvf1H+JV8bziNkrzLfPC8fGhGydb75DMj8Fua1oQPdf+xfGsAQRjCGibC/Zx/sGehBE+4xfxqBF7LPR3iCZ7iQewr5znq3nIHscLViYd94D8YZ6A53lv8kX123jS1D5k9Zh4HRQ6ur67axv/os6n6jOsxUh0/WQxvCWOFjvA/Hu5sdvgHToMRRgAsAAA==
+  </data>
+ </layer>
+ <layer name="Ground 2" width="32" height="23">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAVDHXxkZGD4xDhw9jMyMTAwMQ2c/aNgFMwa4PRHbfs5gfmZC4i5ofmaFy1/8zMisAAUCyNhSoAgCwODBBArATEjEAsAsTKSPSo4zG8GhkELEGtC5UF6hYBYGIj1iHSTMSNEHwioAGlVFkw1IHl5IJZDk5sMtHsKEE9FigslJDWSUL/gA56MEHUyUHXiWNRLYhGThbpHHof5vNAw/c+MMBsbiIeFEwsiHMgFElD9ylC7GaD8EjxxUcqI0IvNn9jMRwdcaGEOAjC/dBBIB9145GHpTxAaNoTchw7mEpkGF+FQVwtMV3Vk5PONQPM2kZAndwDV7gTiXUC8G4j3APFeJLyPAD4MxEeA+CgQHwPi40B8ggrtg7lAv8+jYTn7kBm//Fqg3esGsJxvgWJqAgCvV15kgAsAAA==
+  </data>
+ </layer>
+ <layer name="Fringe" width="32" height="23">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYOiDKCYGhmimgbM/C2h39gDaXwW0u3oA7e8C2t09QPYHAu0NAuLZVLL/ExB/BuIvQPyVgNoEoJ2JQJxEJfvZGRkYOBhRxXjQ+HxofBCYRSX7ZbGYTQ3Ay0Ka+lVAv6ymYnpSIsF+LxqFwVAEyiTGGy1BLjA95A1gGTfQYC7Q7/NGsP8HGuwFhv0+Koc/ACwG5W2ACwAA
+  </data>
+ </layer>
+ <layer name="Over" width="32" height="23">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3WSS8DYRzH8ZlabxTVktg5WoqEqyUpZ2JJEFssB0uRoj2oPbhUrSERXBHb0cHyEngFlndALBd8JxnRVDGdNCriST6ZJ/M8//k9/6abIPyNcS4KwoXon+xLcq9wjRs/nUEat2Tfyfn3XB/wiKcfOlOARhACEYRghCBUo+5ZedTlu9R66ieM9XBoEYFIREGHaOhhUJlvoq4EpR76iUM8EpCIJCQjBalIU5n51k8FKlGFag/9pCMDmciCEdnIQa6KbPd+WtCKNrQr6KeA9UIUoVhFvns/FvTD5uWzythfrvK1dx9WFflN7G+Wa57xIk14r4rQePkZnOY5Mwryu9ljRg960SfXRJGnQzT0MCAGsQrPscJzVhXk29kzjBEF+zPJzoLRh99HDjJn4VR4XmmYyC/x0RnWydzAJrYU5NeQW4u6L/LrWWtAI5q+2LdL3h72cYAjt/wOajvRhW6Y0YPeb3q3sN6PAQzCCptLjZb5EI7JO8EpzmAX30ljlOsYxjGBSfn+lJevvYP9sy41TuZzWMS8PJeuC/K9JSx/krHm49/CbfGjnU8yDv343+B//M7xCsefaymACwAA
+  </data>
+ </layer>
+ <layer name="Collision" width="32" height="23" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA9WUUQoAIQhEY+9/tqwbLUKCSLVKWu3A/Ej0xrLKk1JROgf4JFvLj2L/hX/6/G+Yv6gMVr53Jg/+SoZb+bveh2avyDnc/d/cxkd98WszCloNmnmdjPLig+DT3iRel4roX0r2b+ldwydG7eTIk1wWvswwWkt8WfPmjzL0+CtvjfN7Gbj5HMJkndVSu/nyHujuZlm92OgXzdI1YYALAAA=
+  </data>
+ </layer>
+ <layer name="Heights" width="32" height="23" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgGAWjYBSMglEwCkYBNqDLAsE6UAwCMLY2C23t1mMZWPtBAN1+ZDwQ/kcOB3r4HwZg7kAG9LQf2d8DAbTplN5GEgAAKadVsIALAAA=
+  </data>
+ </layer>
+</map>
